@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+#mainPicture svg .block:hover rect.background {
+  fill: #E0F0FF
+}
+#mainPicture svg .block:hover rect.foreground {
+  stroke: rgb(21,101,192);
+}
