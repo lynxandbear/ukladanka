@@ -7,8 +7,8 @@ import { useState } from "react"
 import MirrorControl from "../controls/MirrorControls"
 
 export interface PictureProps {
-    width:  number
-    height: number
+    width:  number | string
+    height: number | string
 
     highlighted?: BlockId
     strokeColor?: string
