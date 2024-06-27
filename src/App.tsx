@@ -3,6 +3,8 @@ import Picture from './svg/Picture';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 
+import { PDFDownloadLink, Document, Page, Svg, usePDF } from '@react-pdf/renderer'
+
 
 
 import '@fontsource/roboto/300.css';
@@ -11,13 +13,14 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { BlockId, BlockSize } from './svg/BlockSize';
 import MirrorControl from './controls/MirrorControls';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import generatePDF, { Margin } from 'react-to-pdf';
 import Paper from '@mui/material/Paper';
 import Popover from '@mui/material/Popover';
 import { Container } from '@mui/material';
+import PdfPicture from './pdfsvg/PdfPicture';
 
 
 function format(date: Date) {
@@ -86,6 +89,47 @@ function App() {
 
   const pdfRef = useRef();
 
+  
+const Pdf =  (
+  <Document title="Układanka" pageLayout="singlePage">
+    <Page size="A6" orientation="landscape">
+      <PdfPicture
+        width="100%" height="100%"
+        mirrors182={[
+          { size: BlockSize.XL, color: mirrors182xlColor },
+          { size: BlockSize.L, color: mirrors182lColor },
+          { size: BlockSize.M, color: mirrors182mColor },
+          { size: BlockSize.S, color: mirrors182sColor },
+        ]}
+        mirrors111={[
+          { size: BlockSize.L, color: mirrors111lColor },
+          { size: BlockSize.M, color: mirrors111mColor },
+          { size: BlockSize.S, color: mirrors111sColor },
+        ]}
+        mirrors67={[
+          { size: BlockSize.M, color: mirrors67mColor },
+          { size: BlockSize.S, color: mirrors67sColor },
+        ]}
+        mirrors40={[
+          { size: BlockSize.S, color: mirrors40sColor },
+        ]}
+        mirror23Color={mirror23xsColor}
+      ></PdfPicture>
+    </Page>
+  </Document>
+);
+
+const [instance, updateInstance] = usePDF();
+
+useEffect(() => updateInstance(Pdf), [Pdf]);
+
+const handleDownload = () => {
+  const link = document.createElement('a');
+  link.download = `ukladanka_${format(new Date())}.pdf`;
+  link.href = instance.url ?? "";
+  link.click();
+};
+
   return (
     <>
     <Container>
@@ -121,7 +165,9 @@ function App() {
               onBlock23Click={handle23Click}
             />
           </Box>
-          <Button variant="contained" onClick={() => generatePDF(pdfRef, { filename: `ukladanka_${format(new Date())}.pdf`, page: { margin: Margin.SMALL, format: 'a6', orientation: 'landscape' } })}>Generate PDF</Button>
+          <Button variant="contained" onClick={handleDownload} disabled={instance.loading} >
+            {instance.loading ? "Generating PDF..." : "Download PDF"}
+          </Button>
         </Stack>
       </Container>
       <Popover
