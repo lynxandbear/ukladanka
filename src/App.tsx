@@ -16,7 +16,6 @@ import MirrorControl from './controls/MirrorControls';
 import { useEffect, useRef, useState } from 'react';
 import { ThemeProvider, createTheme, styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-import generatePDF, { Margin } from 'react-to-pdf';
 import Paper from '@mui/material/Paper';
 import Popover from '@mui/material/Popover';
 import { Container } from '@mui/material';
