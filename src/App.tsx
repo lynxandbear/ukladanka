@@ -12,10 +12,10 @@ import {SlotSize} from './svg/MirrorSize';
 import React, {useEffect, useRef} from 'react';
 import Button from '@mui/material/Button';
 import {Container} from '@mui/material';
-import PdfPicture from './pdfsvg/PdfPicture';
 import {MirrorProps} from "./svg/Mirror";
 import {useAppSelector} from "./app/hooks";
 import Stack from "@mui/material/Stack";
+import {RenderingContext, RenderingContexts} from "./unisvg/renderingContext";
 
 
 function format(date: Date) {
@@ -32,22 +32,25 @@ function App() {
         return slot.mirrors.map<MirrorProps>(size => ({size, color: colors[slot.name][size]}))
     }
 
+    let slots = new Map(SlotSize.all.map(slotSize => [slotSize, mirrorPropsFor(slotSize)]));
     const Pdf = (
-        <Document title="Układanka" pageLayout="singlePage">
-            <Page size="A6" orientation="landscape">
-                <PdfPicture
-                    width="100%" height="100%"
-                    slots={new Map(SlotSize.all.map(slotSize => [slotSize, mirrorPropsFor(slotSize)]))}
-                ></PdfPicture>
-            </Page>
-        </Document>
+            <Document title="Układanka" pageLayout="singlePage">
+                <Page size="A6" orientation="landscape">
+                    <RenderingContext.Provider value={RenderingContexts.Pdf}>
+                        <Picture
+                                 width="100%"
+                                 height="100%"
+                                 slots={slots} />
+                    </RenderingContext.Provider>
+                </Page>
+            </Document>
     );
 
     const [instance, updateInstance] = usePDF();
 
     useEffect(() => updateInstance(Pdf), [Pdf]);
 
-    const handleDownload = () => {
+    const handleDownload = async () => {
         const link = document.createElement('a');
         link.download = `ukladanka_${format(new Date())}.pdf`;
         link.href = instance.url ?? "";
@@ -58,14 +61,15 @@ function App() {
         <Container>
             <Stack>
                 <Box id="mainPicture" ref={pdfRef}>
-                    <Picture editable
-                             width="100%"
-                             height="100%"
-                             slots={new Map(SlotSize.all.map(slotSize => [slotSize, mirrorPropsFor(slotSize)]))}
-                    />
+                    <RenderingContext.Provider value={RenderingContexts.Web}>                    
+                        <Picture editable
+                                 width="100%"
+                                 height="100%"
+                                 slots={slots} />
+                    </RenderingContext.Provider>
                 </Box>
-                <Button variant="contained" onClick={handleDownload} disabled={instance.loading}>
-                    {instance.loading ? "Generating PDF..." : "Download PDF"}
+                <Button variant="contained" onClick={handleDownload}>
+                    Download PDF
                 </Button>
             </Stack>
         </Container>

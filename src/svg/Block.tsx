@@ -1,4 +1,4 @@
-import {EditorPosition, MirrorSize, SlotSize} from "./MirrorSize"
+import {EditorPosition, SlotSize} from "./MirrorSize"
 import {Mirror, MirrorProps} from "./Mirror"
 import React from "react";
 import Popover from "@mui/material/Popover";
@@ -11,6 +11,9 @@ import Paper from "@mui/material/Paper";
 import {bindPopover, bindTrigger} from "material-ui-popup-state";
 import {PopupState, usePopupState} from "material-ui-popup-state/hooks";
 import {PopoverOrigin} from "@mui/material/Popover/Popover";
+import {UniG} from "../unisvg/UniG";
+import {UniRect} from "../unisvg/UniRect";
+import {UniEditor} from "../unisvg/UniEditor";
 
 
 export interface BlockProps {
@@ -26,30 +29,28 @@ const ColorPaper = styled(Paper)(({ theme }) => ({
 
 function transformOriginFrom(editorPosition: EditorPosition): PopoverOrigin {
     return {
-        horizontal: editorPosition.horizontal == "left" ? "right": "left",
+        horizontal: editorPosition.horizontal === "left" ? "right": "left",
         vertical: editorPosition.vertical
     }    
 }
 
-function SlotAndMirrors(props: BlockProps & {popupState: PopupState}) {
-    const transform = `translate(${props.size.x} ${props.size.y}) rotate(${props.size.orientation} ${props.size.width / 2} ${props.size.height / 2})`
-
-    return <g className="block" pointerEvents="all" transform={transform} {...bindTrigger(props.popupState)}>
-        <rect
+function SlotAndMirrors(props: BlockProps & {popupState?: PopupState}) {
+    return <UniG className="block" pointerEvents="all" transform={props.size} {...(props.popupState === undefined ? {} : bindTrigger(props.popupState))}>
+        <UniRect
             className="background"
-            width={props.size.width} height={props.size.height} rx="3"
-            stroke="none"/>
+            width={props.size.width} height={props.size.height} rx="3" ry="3"
+            stroke="none"
+            fill="none"/>
         {props.mirrors.map(p => <Mirror key={p.size} {...p} />)}
-        <rect
+        <UniRect
             className="foreground"
-            width={props.size.width} height={props.size.height} rx="3"
-            stroke={props.strokeColor ?? "black"}/>
-    </g>;
+            width={props.size.width} height={props.size.height} rx="3" ry="3"
+            stroke={props.strokeColor ?? "black"}
+            fill="none"/>
+    </UniG>;
 }
 
-
-
-function EditorPopover(props: BlockProps & {popupState: PopupState}) {
+export function EditorPopover(props: BlockProps & {popupState: PopupState}) {
     const dispatch = useAppDispatch();
     const slots = useAppSelector(state => state.picture.slots)
     
@@ -75,13 +76,21 @@ function EditorPopover(props: BlockProps & {popupState: PopupState}) {
     </Popover>;
 }
 
-export function Block(props: BlockProps & {editable?: boolean}) {
+function EditableBlock(props: BlockProps) {
     const popupState = usePopupState({
-        variant: "popover", 
+        variant: "popover",
         popupId: `popover-${props.size.name}`})
-    
+
     return <>
         <SlotAndMirrors popupState={popupState} {...props} />
-        {props.editable ?? false ? <EditorPopover  popupState={popupState} {...props} /> : null }
+        <UniEditor popupState={popupState} {...props} />
     </>
+}
+
+function StaticBlock(props: BlockProps) {
+    return <SlotAndMirrors {...props} />
+}
+
+export function Block(props: BlockProps & {editable?: boolean}) {
+    return props.editable ?? false ? EditableBlock(props) : StaticBlock(props)
 }
