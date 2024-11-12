@@ -15,11 +15,17 @@ importers:
         specifier: ^11.11.5
         version: 11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1)
       '@fontsource/roboto':
-        specifier: ^5.0.13
-        version: 5.0.13
+        specifier: ^5.1.0
+        version: 5.1.0
       '@mui/material':
         specifier: ^5.15.20
         version: 5.15.20(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@react-buddy/ide-toolbox':
+        specifier: ^2.4.0
+        version: 2.4.0(react@18.3.1)
+      '@react-buddy/palette-mui':
+        specifier: ^5.0.1
+        version: 5.0.2(@mui/icons-material@5.16.7(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       '@react-pdf/renderer':
         specifier: ^3.4.4
         version: 3.4.4(react@18.3.1)
@@ -47,6 +53,12 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
+      immer:
+        specifier: 10.1.1
+        version: 10.1.1
+      material-ui-popup-state:
+        specifier: ^5.1.2
+        version: 5.3.1(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -992,8 +1004,8 @@ packages:
   '@floating-ui/utils@0.2.3':
     resolution: {integrity: sha512-XGndio0l5/Gvd6CLIABvsav9HHezgDFFhDfHk1bvLfr9ni8dojqLSvBbotJEjmIwNHL7vK4QzBJTdBRoB+c1ww==}
 
-  '@fontsource/roboto@5.0.13':
-    resolution: {integrity: sha512-j61DHjsdUCKMXSdNLTOxcG701FWnF0jcqNNQi2iPCDxU8seN/sMxeh62dC++UiagCWq9ghTypX+Pcy7kX+QOeQ==}
+  '@fontsource/roboto@5.1.0':
+    resolution: {integrity: sha512-cFRRC1s6RqPygeZ8Uw/acwVHqih8Czjt6Q0MwoUoDe9U3m4dH1HmNDRBZyqlMSFwgNAUKgFImncKdmDHyKpwdg==}
 
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
@@ -1128,6 +1140,17 @@ packages:
   '@mui/core-downloads-tracker@5.15.20':
     resolution: {integrity: sha512-DoL2ppgldL16utL8nNyj/P12f8mCNdx/Hb/AJnX9rLY4b52hCMIx1kH83pbXQ6uMy6n54M3StmEbvSGoj2OFuA==}
 
+  '@mui/icons-material@5.16.7':
+    resolution: {integrity: sha512-UrGwDJCXEszbDI7yV047BYU5A28eGJ79keTCP4cc74WyncuVrnurlmIRxaHL8YK+LI1Kzq+/JM52IAkNnv4u+Q==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@mui/material': ^5.0.0
+      '@types/react': ^17.0.0 || ^18.0.0
+      react: ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
   '@mui/material@5.15.20':
     resolution: {integrity: sha512-tVq3l4qoXx/NxUgIx/x3lZiPn/5xDbdTE8VrLczNpfblLYZzlrbxA7kb9mI8NoBF6+w9WE9IrxWnKK5KlPI2bg==}
     engines: {node: '>=12.0.0'}
@@ -1249,6 +1272,18 @@ packages:
 
   '@popperjs/core@2.11.8':
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+
+  '@react-buddy/ide-toolbox@2.4.0':
+    resolution: {integrity: sha512-TWHX6gwa0Gop7215uHhjFMbYLLdjM/b9rr0wYE3E0m7GNJ56gbPpbZiq86w9uI8zksl827acqGeT437MkuO64w==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0
+
+  '@react-buddy/palette-mui@5.0.2':
+    resolution: {integrity: sha512-X9gdm+fwmvZTiOMWtCtljyJtSEYNH2F6qHtmht7liQUkNW8e61icu2vfLWYtwz9XG1QxFuPbev5RCsh/+Ewldw==}
+    peerDependencies:
+      '@mui/icons-material': ^5.0.1
+      '@mui/material': ^5.0.1
+      react: ^17.0.0 || ^18.0.0
 
   '@react-pdf/fns@2.2.1':
     resolution: {integrity: sha512-s78aDg0vDYaijU5lLOCsUD+qinQbfOvcNeaoX9AiE7+kZzzCo6B/nX+l48cmt9OosJmvZvE9DWR9cLhrhOi2pA==}
@@ -2140,6 +2175,9 @@ packages:
   cjs-module-lexer@1.3.1:
     resolution: {integrity: sha512-a3KdPAANPbNE4ZUv9h6LckSl9zLsYOP4MBmhIPkRaeyybt+r4UghLvq+xw/YwUcC1gqylCkL4rdVs3Lwupjm4Q==}
 
+  classnames@2.5.1:
+    resolution: {integrity: sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==}
+
   clean-css@5.3.3:
     resolution: {integrity: sha512-D5J+kHaVb/wKSFcyyV75uCn8fiY4sV38XJoe4CUyGQ+mOU/fMVYUdH1hJC+CJQ5uY3EnW27SbJYS4X8BiLrAFg==}
     engines: {node: '>= 10.0'}
@@ -2846,6 +2884,7 @@ packages:
   eslint@8.57.0:
     resolution: {integrity: sha512-dZ6+mexnaTIbSBZWgou51U6OmzIhYM2VcNdtiTtI7qPNZm35Akpr0f6vtw3w1Kmn5PYo+tZVfh13WrhpS6oLqQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   espree@9.6.1:
@@ -3940,6 +3979,13 @@ packages:
 
   makeerror@1.0.12:
     resolution: {integrity: sha512-JmqCvUhmt43madlpFzG4BQzG2Z3m6tvQDNKdClZnO3VbIudJYmxsT0FNJMeiB2+JTSlTQTSbU8QdesVmwJcmLg==}
+
+  material-ui-popup-state@5.3.1:
+    resolution: {integrity: sha512-mmx1DsQwF/2cmcpHvS/QkUwOQG2oAM+cDEQU0DaZVYnvwKyTB3AFgu8l1/E+LQFausmzpSJoljwQSZXkNvt7eA==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      '@mui/material': ^5.0.0 || ^6.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
 
   mdn-data@2.0.14:
     resolution: {integrity: sha512-dn6wd0uw5GsdswPFfsgMp5NSB0/aDe6fK94YJV/AJDYXL6HVLWBsxeq7js7Ad+mU2K9LAlwpk6kN2D5mwCPVow==}
@@ -7126,7 +7172,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.3': {}
 
-  '@fontsource/roboto@5.0.13': {}
+  '@fontsource/roboto@5.1.0': {}
 
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
@@ -7376,6 +7422,14 @@ snapshots:
 
   '@mui/core-downloads-tracker@5.15.20': {}
 
+  '@mui/icons-material@5.16.7(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.3)(react@18.3.1)':
+    dependencies:
+      '@babel/runtime': 7.24.7
+      '@mui/material': 5.15.20(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react: 18.3.1
+    optionalDependencies:
+      '@types/react': 18.3.3
+
   '@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.24.7
@@ -7482,6 +7536,17 @@ snapshots:
       webpack-dev-server: 4.15.2(webpack@5.92.1)
 
   '@popperjs/core@2.11.8': {}
+
+  '@react-buddy/ide-toolbox@2.4.0(react@18.3.1)':
+    dependencies:
+      react: 18.3.1
+
+  '@react-buddy/palette-mui@5.0.2(@mui/icons-material@5.16.7(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@mui/icons-material': 5.16.7(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.3)(react@18.3.1)
+      '@mui/material': 5.15.20(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@react-buddy/ide-toolbox': 2.4.0(react@18.3.1)
+      react: 18.3.1
 
   '@react-pdf/fns@2.2.1':
     dependencies:
@@ -8645,6 +8710,8 @@ snapshots:
   ci-info@3.9.0: {}
 
   cjs-module-lexer@1.3.1: {}
+
+  classnames@2.5.1: {}
 
   clean-css@5.3.3:
     dependencies:
@@ -10889,6 +10956,16 @@ snapshots:
   makeerror@1.0.12:
     dependencies:
       tmpl: 1.0.5
+
+  material-ui-popup-state@5.3.1(@mui/material@5.15.20(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1):
+    dependencies:
+      '@babel/runtime': 7.24.7
+      '@mui/material': 5.15.20(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react@18.3.1))(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@types/prop-types': 15.7.12
+      '@types/react': 18.3.3
+      classnames: 2.5.1
+      prop-types: 15.8.1
+      react: 18.3.1
 
   mdn-data@2.0.14: {}
 
